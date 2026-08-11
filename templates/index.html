@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        SheSecure-AI
+    </title>
+
+    <!-- Leaflet -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <!-- Application CSS -->
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     LOGIN PAGE
+======================================================= -->
+
+<section
+    id="loginPage"
+    class="page"
+>
+
+    <div class="login-card">
+
+        <div class="logo">
+            🛡️
+        </div>
+
+        <h1>
+            SheSecure-AI
+        </h1>
+
+        <p>
+            Intelligent Women Safety
+            & Travel Assistant
+        </p>
+
+
+        <label>
+            Your Name
+        </label>
+
+        <input
+            id="loginName"
+            type="text"
+            placeholder="Enter your name"
+        >
+
+
+        <label>
+            Mobile Number
+        </label>
+
+        <input
+            id="loginPhone"
+            type="tel"
+            placeholder="+91XXXXXXXXXX"
+        >
+
+
+        <button
+            id="loginButton"
+            class="primary-button"
+        >
+            Continue Securely →
+        </button>
+
+
+        <p
+            id="loginError"
+            class="error-text"
+        ></p>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     MAIN APPLICATION
+======================================================= -->
+
+<div
+    id="application"
+    class="application hidden"
+>
+
+
+    <!-- ==================================================
+         SIDEBAR
+    =================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🛡️
+            </div>
+
+            <div>
+
+                <h2>
+                    SheSecure-AI
+                </h2>
+
+                <small>
+                    Intelligent Safety Companion
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <hr>
+
+
+        <div class="user-box">
+
+            👋
+
+            <strong id="sidebarUser">
+                User
+            </strong>
+
+        </div>
+
+
+        <h3>
+            Quick Access
+        </h3>
+
+
+        <button
+            class="nav-button active"
+            data-page="home"
+        >
+            🏠 Home
+        </button>
+
+
+        <button
+            class="nav-button"
+            data-page="route"
+        >
+            🗺️ Safe Route
+        </button>
+
+
+        <button
+            class="nav-button"
+            data-page="sos"
+        >
+            🚨 SOS
+        </button>
+
+
+        <button
+            class="nav-button"
+            data-page="analytics"
+        >
+            📊 Safety Analytics
+        </button>
+
+
+        <button
+            class="nav-button"
+            data-page="assistant"
+        >
+            🤖 AI Assistant
+        </button>
+
+
+        <hr>
+
+
+        <button
+            class="voice-nav-button"
+            data-page="assistant"
+        >
+            🎤 Talk to SheSecure
+        </button>
+
+
+        <div class="sidebar-bottom">
+
+            <button
+                id="logoutButton"
+                class="logout-button"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ==================================================
+         CONTENT
+    =================================================== -->
+
+    <main class="content">
+
+
+        <!-- ==================================================
+             HOME
+        =================================================== -->
+
+        <section
+            id="homePage"
+            class="content-page"
+        >
+
+            <div class="hero">
+
+                <h1>
+                    Welcome to SheSecure-AI 🛡️
+                </h1>
+
+                <p>
+                    Your intelligent companion for
+                    safer travel and personal safety.
+                </p>
+
+            </div>
+
+
+            <div class="location-card">
+
+                <div>
+
+                    <span>
+                        📍 Your Current Location
+                    </span>
+
+                    <h2
+                        id="currentLocationName"
+                    >
+                        Detecting location...
+                    </h2>
+
+                    <p>
+                        Your location is used to
+                        personalize safety features.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="homeMap"
+                class="map"
+            ></div>
+
+
+            <div class="feature-grid">
+
+                <div class="feature-card">
+
+                    <span>
+                        🗺️
+                    </span>
+
+                    <h3>
+                        Safer Routes
+                    </h3>
+
+                    <p>
+                        Compare routes using
+                        estimated safety risk.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <span>
+                        🚨
+                    </span>
+
+                    <h3>
+                        SOS
+                    </h3>
+
+                    <p>
+                        Quickly share your
+                        current location.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <span>
+                        📊
+                    </span>
+
+                    <h3>
+                        Analytics
+                    </h3>
+
+                    <p>
+                        Understand safety patterns
+                        by location.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <span>
+                        🎤
+                    </span>
+
+                    <h3>
+                        Voice AI
+                    </h3>
+
+                    <p>
+                        Talk naturally with
+                        SheSecure AI.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             SAFE ROUTE
+        =================================================== -->
+
+        <section
+            id="routePage"
+            class="content-page hidden"
+        >
+
+            <div class="hero">
+
+                <h1>
+                    🗺️ Safer Journey
+                </h1>
+
+                <p>
+                    Your current location is automatically
+                    used as the starting point.
+                </p>
+
+            </div>
+
+
+            <div class="location-card">
+
+                <span>
+                    📍 Starting Location
+                </span>
+
+                <h2
+                    id="routeStartLocation"
+                >
+                    Detecting...
+                </h2>
+
+            </div>
+
+
+            <div class="card">
+
+                <label>
+                    🏁 Destination
+                </label>
+
+                <input
+                    id="destination"
+                    type="text"
+                    placeholder="Example: Guntur Railway Station"
+                >
+
+
+                <label>
+                    🚗 Travel Mode
+                </label>
+
+                <select
+                    id="vehicle"
+                >
+
+                    <option>
+                        Bike 🏍️
+                    </option>
+
+                    <option>
+                        Auto 🛺
+                    </option>
+
+                    <option>
+                        Car 🚗
+                    </option>
+
+                    <option>
+                        Other Vehicle 🚙
+                    </option>
+
+                </select>
+
+
+                <h2>
+                    ⏱️ Planned Travel Time
+                </h2>
+
+
+                <div class="time-grid">
+
+                    <div>
+
+                        <label>
+                            Hours ⏱️
+                        </label>
+
+                        <input
+                            id="travelHours"
+                            type="number"
+                            min="0"
+                            max="23"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Minutes ⏱️
+                        </label>
+
+                        <input
+                            id="travelMinutes"
+                            type="number"
+                            min="0"
+                            max="59"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Seconds ⏱️
+                        </label>
+
+                        <input
+                            id="travelSeconds"
+                            type="number"
+                            min="0"
+                            max="59"
+                            value="0"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="routeButton"
+                    class="primary-button"
+                >
+                    🛡️ Find Safer Routes
+                </button>
+
+
+                <p
+                    id="routeError"
+                    class="error-text"
+                ></p>
+
+            </div>
+
+
+            <div
+                id="routeResults"
+                class="hidden"
+            >
+
+                <div
+                    id="recommendedRoute"
+                    class="recommendation"
+                ></div>
+
+
+                <div class="card">
+
+                    <h2>
+                        🛣️ Route Options
+                    </h2>
+
+                    <div
+                        id="routeTable"
+                    ></div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h2>
+                        🗺️ Journey Map
+                    </h2>
+
+                    <div
+                        id="routeMap"
+                        class="map large-map"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             SOS
+        =================================================== -->
+
+        <section
+            id="sosPage"
+            class="content-page hidden"
+        >
+
+            <div class="hero">
+
+                <h1>
+                    🚨 Emergency SOS
+                </h1>
+
+                <p>
+                    Quickly share your current
+                    location with trusted contacts.
+                </p>
+
+            </div>
+
+
+            <div class="sos-card">
+
+                <div class="sos-icon">
+                    🚨
+                </div>
+
+                <h2>
+                    Emergency Assistance
+                </h2>
+
+                <p
+                    id="sosLocation"
+                >
+                    Detecting location...
+                </p>
+
+
+                <button
+                    id="sosButton"
+                    class="sos-button"
+                >
+                    🚨 ACTIVATE SOS
+                </button>
+
+
+                <p
+                    id="sosMessage"
+                    class="success-text"
+                ></p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    👥 Trusted Contacts
+                </h2>
+
+
+                <div
+                    id="contactsList"
+                ></div>
+
+
+                <hr>
+
+
+                <h3>
+                    ➕ Add Trusted Contact
+                </h3>
+
+
+                <input
+                    id="contactName"
+                    type="text"
+                    placeholder="Contact name"
+                >
+
+
+                <input
+                    id="contactPhone"
+                    type="tel"
+                    placeholder="+91XXXXXXXXXX"
+                >
+
+
+                <button
+                    id="addContactButton"
+                    class="primary-button"
+                >
+                    Save Trusted Contact
+                </button>
+
+
+                <p
+                    id="contactError"
+                    class="error-text"
+                ></p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             ANALYTICS
+        =================================================== -->
+
+        <section
+            id="analyticsPage"
+            class="content-page hidden"
+        >
+
+            <div class="hero">
+
+                <h1>
+                    📊 Safety Analytics
+                </h1>
+
+                <p>
+                    Understand safety patterns
+                    using meaningful locations.
+                </p>
+
+            </div>
+
+
+            <div class="metrics-grid">
+
+                <div class="metric">
+
+                    <span>
+                        📊
+                    </span>
+
+                    <strong
+                        id="totalIncidents"
+                    >
+                        0
+                    </strong>
+
+                    <small>
+                        Total Incidents
+                    </small>
+
+                </div>
+
+
+                <div class="metric">
+
+                    <span>
+                        ⚠️
+                    </span>
+
+                    <strong
+                        id="averageSeverity"
+                    >
+                        0
+                    </strong>
+
+                    <small>
+                        Average Severity
+                    </small>
+
+                </div>
+
+
+                <div class="metric">
+
+                    <span>
+                        🔴
+                    </span>
+
+                    <strong
+                        id="highSeverity"
+                    >
+                        0
+                    </strong>
+
+                    <small>
+                        High Severity
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    📍 Reported Safety Incidents
+                </h2>
+
+                <div
+                    id="incidentTable"
+                ></div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    📌 Incident Distribution
+                </h2>
+
+                <div
+                    id="locationAnalytics"
+                ></div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    ➕ Report Safety Incident
+                </h2>
+
+
+                <p>
+                    Report an incident at your
+                    current location.
+                </p>
+
+
+                <select
+                    id="incidentType"
+                >
+
+                    <option>
+                        Harassment
+                    </option>
+
+                    <option>
+                        Suspicious Activity
+                    </option>
+
+                    <option>
+                        Theft
+                    </option>
+
+                    <option>
+                        Assault
+                    </option>
+
+                    <option>
+                        Unsafe Area
+                    </option>
+
+                    <option>
+                        Other
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Severity:
+                    <span id="severityValue">
+                        5
+                    </span>/10
+                </label>
+
+                <input
+                    id="severity"
+                    type="range"
+                    min="1"
+                    max="10"
+                    value="5"
+                >
+
+
+                <button
+                    id="reportButton"
+                    class="primary-button"
+                >
+                    Submit Safety Report
+                </button>
+
+
+                <p
+                    id="reportMessage"
+                    class="success-text"
+                ></p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             AI ASSISTANT
+        =================================================== -->
+
+        <section
+            id="assistantPage"
+            class="content-page hidden"
+        >
+
+            <div class="hero">
+
+                <h1>
+                    🤖 SheSecure AI
+                </h1>
+
+                <p>
+                    Your intelligent voice and
+                    text safety companion.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <p>
+                    📍 Current area:
+                    <strong
+                        id="assistantLocation"
+                    >
+                        Detecting...
+                    </strong>
+                </p>
+
+            </div>
+
+
+            <div
+                id="chatMessages"
+                class="chat-messages"
+            ></div>
+
+
+            <div class="voice-card">
+
+                <div class="microphone">
+                    🎤
+                </div>
+
+                <h2>
+                    Talk to SheSecure
+                </h2>
+
+                <p>
+                    Press the microphone and speak.
+                </p>
+
+
+                <button
+                    id="micButton"
+                    class="mic-button"
+                >
+                    🎤
+                </button>
+
+
+                <p
+                    id="voiceStatus"
+                >
+                    Ready
+                </p>
+
+            </div>
+
+
+            <div class="chat-input">
+
+                <input
+                    id="questionInput"
+                    type="text"
+                    placeholder="Ask SheSecure AI..."
+                >
+
+                <button
+                    id="sendQuestion"
+                    class="send-button"
+                >
+                    ➤
+                </button>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- ======================================================
+     JAVASCRIPT LIBRARIES
+======================================================= -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+></script>
+
+
+<!-- ======================================================
+     APPLICATION JAVASCRIPT
+======================================================= -->
+
+<script
+    src="/static/app.js"
+></script>
+
+
+</body>
+
+</html>
